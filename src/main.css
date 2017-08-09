@@ -2,3 +2,60 @@
     width: 320px;
     height: 480px;
 }
+
+#ad-container {
+  position: absolute;
+}
+
+#ayoDonasi {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#ayoDonasi.blur-out {
+  filter: blur(8px);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 1s ease-out;
+}
+
+#mainGamenya {
+  position: absolute;
+  top: 20px;
+  left: 5px;
+  opacity: 0;
+  visibility: hidden;
+  filter: blur(8px);
+  transition: all 0.8s ease-in;
+}
+
+#mainGamenya.blur-in {
+  filter: blur(0px);
+  opacity: 1;
+  visibility: visible;
+}
+
+#mixMatchContainer {
+  position: absolute;
+  top: 295px;
+}
+
+.container {
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  width: 320px;
+  height: 480px;
+  position: absolute;
+}
+
+.card {
+  position: absolute; margin:0; display: block; transform-style: preserve-3d;transition: transform 0.6s;
+}
+
+.card img {
+  -webkit-backface-visibility:hidden;backface-visibility:hidden;position:absolute;
+}
