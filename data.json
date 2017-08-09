@@ -1,0 +1,4 @@
+json_data = {
+  "bg1": "img/BG1.png",
+  "sample": "sample"
+}
