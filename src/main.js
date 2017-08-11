@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 /* global window */
-import Mads from 'mads-custom';
+import Mads, { fadeOutIn } from 'mads-custom';
 import './main.css';
 
 const getDuplicates = (arr) => {
@@ -37,15 +37,27 @@ class AdUnit extends Mads {
 
   render() {
     Object.keys(this.data).forEach((key) => {
-      this.data[key] = this.data[key].indexOf('.png') > -1 ? this.data[key].replace(/\s/g, '%20') : this.data[key];
+      this.data[key] = typeof this.data[key] === 'string' && this.data[key].indexOf('.png') > -1 ? this.data[key].replace(/\s/g, '%20') : this.data[key];
     });
 
     return `
       <div class="container" id="ad-container">
         <div id="page1" class="page">
-          <img src="${this.data.ayoDonasi}" title="ayo-donasi" id="ayoDonasi" />
-          <img src="${this.data.mainGamenya}" title="main-gamenya" id="mainGamenya" />
           <div id="mixMatchContainer"></div>
+        </div>
+        <div id="page2" class="page" style="display: none;">
+          <form id="questionaire" class="form">
+            <input type="text" placeholder="Nama *" required id="inputName">
+            <input type="email" placeholder="Email *" required id="inputEmail">
+            <input type="image" src="${this.data.btnSubmitImage}">
+          </form>
+        </div>
+        <div id="page3" class="page" style="display: none;">
+          <div id="social">
+            <img src="${this.data.twit}" id="btnTwitter">
+            <img src="${this.data.fb}" id="btnFacebook">
+          </div>
+          <img src="${this.data.btnSubmitImage}" id="btnInfo">
         </div>
       </div>
     `;
@@ -60,14 +72,67 @@ class AdUnit extends Mads {
       #page1 {
         background: url(${this.data.bg1});
       }
+      #page2 {
+        background: url(${this.data.bg2});
+      }
+      #page3 {
+        background: url(${this.data.bg3});
+      }
       `];
   }
 
   events() {
-    setTimeout(() => {
-      this.elems.ayoDonasi.className = 'blur-out';
-      this.elems.mainGamenya.className = 'blur-in';
-    }, 1000);
+    let submitting = false;
+    this.elems.questionaire.addEventListener('submit', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      if (submitting) return;
+      submitting = true;
+      const inputs = [];
+      const elements = this.leadData.leadGenEle.elements;
+      let ele = '';
+      const trackId = this.leadData.leadGenEle.leadGenTrackID;
+      const userId = this.data.userId || 0;
+      const studioId = this.data.studioId || 0;
+      const referredURL = encodeURIComponent(this.lead_tags || window.location.href);
+      elements.forEach((element, index) => {
+        inputs.push(this.elems[element.ele_id].value);
+        ele += `{"fieldname":"${element.ele_name}","value":"${inputs[inputs.length - 1]}"}`;
+        if (index !== elements.length - 1) {
+          ele += ',';
+        }
+      });
+
+      ele = encodeURIComponent(ele);
+
+      const url = `https://www.mobileads.com/api/save_lf?contactEmail=${this.data.emails}&gotDatas=1&element=${ele}&user-id=${userId}&studio-id=${studioId}&tab-id=1&trackid=${trackId}&referredURL=${referredURL}&callback=leadGenCallback`;
+      window.leadGenCallback = () => {
+        console.log('leadgen callback called');
+      };
+      this.tracker('E', 'submit');
+      this.loadJS(url).then(() => {
+        console.log('done submission leadgen');
+        fadeOutIn(this.elems.page2, this.elems.page3, {
+          display: 'block',
+        });
+      });
+    });
+    this.elems.btnFacebook.addEventListener('mousedown', () => {
+      this.tracker('E', 'facebook');
+      const url = encodeURIComponent('http://google.com/');
+      this.linkOpener(`https://www.facebook.com/sharer/sharer.php?u=${url}`);
+    });
+    this.elems.btnTwitter.addEventListener('mousedown', () => {
+      this.tracker('E', 'twitter');
+      const referrer = encodeURIComponent('http://google.com/');
+      const msg = encodeURIComponent('message');
+      const url = encodeURIComponent('http://google.com/');
+      this.linkOpener(`https://twitter.com/intent/tweet?text=${msg}&original_referrer=${referrer}&url=${url}&tw_p=tweetbutton&via=google`);
+    });
+    this.elems.btnInfo.addEventListener('mousedown', () => {
+      this.tracker('E', 'info');
+      this.linkOpener('http://google.com');
+    });
   }
 
   initMixMatch(opts) {
@@ -119,6 +184,9 @@ class AdUnit extends Mads {
 
           this.opened.push(card);
 
+          this.match = 4;
+          this.opened.push(card);
+
           if (this.opened.length === 2 && this.opened[0].className !== this.opened[1].className) {
             this.disableAll = true;
             setTimeout(() => {
@@ -134,7 +202,11 @@ class AdUnit extends Mads {
             this.match += 1;
 
             if (this.match >= 4) {
-              // done
+              setTimeout(() => {
+                fadeOutIn(this.elems.page1, this.elems.page2, {
+                  display: 'block',
+                });
+              }, 2000);
             }
           }
 

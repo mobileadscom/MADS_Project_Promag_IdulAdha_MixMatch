@@ -1,10 +1,37 @@
 json_data = {
   "bg1": "img/BG1.png",
-  "ayoDonasi": "img/CTA AYO DONASI.png",
-  "mainGamenya": "img/CTA MAIN GAMENYA.png",
+  "bg2": "img/BG2.png",
+  "bg3": "img/BG3.png",
   "front": "img/FRONT_MIXMATCH PROMAG.png",
   "cow": "img/BACK_MIXMATCH COW.png",
   "goat": "img/BACK_MIXMATCH GOAT.png",
   "logo": "img/BACK_MIXMATCH PROMAG LOGO.png",
-  "sheep": "img/BACK_MIXMATCH SHEEP.png"
+  "sheep": "img/BACK_MIXMATCH SHEEP.png",
+  "btnSubmitImage": "img/SUBMIT BTN.png",
+  "fb": "img/FB BTN.png",
+  "twit": "img/TWITTER BTN.png",
+  "emails": "jeff@mobileads.com",
+  "leadGenEle": {
+    "leadGenTrackID": "2164",
+    "elements": [
+      {
+        "ele_label": "",
+        "ele_name": "text_0",
+        "ele_options": "",
+        "ele_id": "inputName",
+        "ele_placeholder": "Nama *",
+        "ele_type": "text",
+        "ele_required": "1"
+      },
+      {
+        "ele_label": "",
+        "ele_name": "email_1",
+        "ele_options": "",
+        "ele_id": "inputEmail",
+        "ele_placeholder": "Email *",
+        "ele_type": "email",
+        "ele_required": "1"
+      }
+    ]
+  }
 }

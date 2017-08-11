@@ -10,7 +10,9 @@
       }]
   }],
   "property": {
-    "bg1": "img/bg.png",
+    "bg1": "img/BG1.png",
+    "bg2": "img/BG2.png",
+    "bg3": "img/BG3.png"
   },
   "trackers": []
 }
