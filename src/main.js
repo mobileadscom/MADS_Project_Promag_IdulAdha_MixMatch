@@ -92,8 +92,8 @@ class AdUnit extends Mads {
       const elements = this.leadData.leadGenEle.elements;
       let ele = '';
       const trackId = this.leadData.leadGenEle.leadGenTrackID;
-      const userId = this.data.userId || 0;
-      const studioId = this.data.studioId || 0;
+      const userId = this.userId || 0;
+      const studioId = this.studioId || 0;
       const referredURL = encodeURIComponent(this.lead_tags || window.location.href);
       elements.forEach((element, index) => {
         inputs.push(this.elems[element.ele_id].value);
@@ -119,15 +119,15 @@ class AdUnit extends Mads {
     });
     this.elems.btnFacebook.addEventListener('mousedown', () => {
       this.tracker('E', 'facebook');
-      const url = encodeURIComponent('http://google.com/');
+      const url = encodeURIComponent('http://www.mobileads.com/preview/?campaignId=e7ac28530858e771621fc0077feac354&studioId=3bf4c8d7416ea7a69efbf205a116f01a&adCategory=Interstitial&platform=MW&dimension=320x480');
       this.linkOpener(`https://www.facebook.com/sharer/sharer.php?u=${url}`);
     });
     this.elems.btnTwitter.addEventListener('mousedown', () => {
       this.tracker('E', 'twitter');
-      const referrer = encodeURIComponent('http://google.com/');
+      const referrer = encodeURIComponent('https://www.mobileads.com/');
       const msg = encodeURIComponent('message');
-      const url = encodeURIComponent('http://google.com/');
-      this.linkOpener(`https://twitter.com/intent/tweet?text=${msg}&original_referrer=${referrer}&url=${url}&tw_p=tweetbutton&via=google`);
+      const url = encodeURIComponent('http://www.mobileads.com/preview/?campaignId=e7ac28530858e771621fc0077feac354&studioId=3bf4c8d7416ea7a69efbf205a116f01a&adCategory=Interstitial&platform=MW&dimension=320x480');
+      this.linkOpener(`https://twitter.com/intent/tweet?text=${msg}&original_referrer=${referrer}&url=${url}&tw_p=tweetbutton&via=mobileads`);
     });
     this.elems.btnInfo.addEventListener('mousedown', () => {
       this.tracker('E', 'info');
@@ -184,8 +184,8 @@ class AdUnit extends Mads {
 
           this.opened.push(card);
 
-          this.match = 4;
-          this.opened.push(card);
+          // this.match = 4;
+          // this.opened.push(card);
 
           if (this.opened.length === 2 && this.opened[0].className !== this.opened[1].className) {
             this.disableAll = true;
@@ -198,10 +198,12 @@ class AdUnit extends Mads {
               this.opened = [];
             }, 1200);
           } else if (this.opened.length === 2 && this.opened[0].className === this.opened[1].className) {
+            this.tracker('E', `match_${this.opened[0].className.replace('card ', '')}`);
             this.opened = [];
             this.match += 1;
 
             if (this.match >= 4) {
+              this.tracker('E', 'match_complete');
               setTimeout(() => {
                 fadeOutIn(this.elems.page1, this.elems.page2, {
                   display: 'block',

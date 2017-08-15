@@ -1,5 +1,7 @@
 json_data = {
-  "bg1": "img/BG1.png",
+  "userId": 2901,
+  "id": 457,
+  "bg1": "img/BG1.gif",
   "bg2": "img/BG2.png",
   "bg3": "img/BG3.png",
   "front": "img/FRONT_MIXMATCH PROMAG.png",
@@ -12,7 +14,7 @@ json_data = {
   "twit": "img/TWITTER BTN.png",
   "emails": "jeff@mobileads.com",
   "leadGenEle": {
-    "leadGenTrackID": "2164",
+    "leadGenTrackID": "0",
     "elements": [
       {
         "ele_label": "",

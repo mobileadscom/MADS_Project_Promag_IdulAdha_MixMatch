@@ -2,17 +2,105 @@
   "sections": [{
     "name": "Assets",
     "inputs": [{
-        "title": "Initial Background",
-        "value": "img/bg.png",
+        "title": "Game Background",
+        "value": "img/BG1.gif",
         "placeholder": "",
         "inputClass": "",
         "target": "bg1"
-      }]
+      }, {
+        "title": "Form Background",
+        "value": "img/BG2.png",
+        "placeholder": "",
+        "inputClass": "",
+        "target": "bg2"
+      },
+      {
+        "title": "Thank You Image",
+        "value": "img/BG3.png",
+        "placeholder": "",
+        "inputClass": "",
+        "target": "bg3"
+      },
+      {
+        "title": "MixMatch Front Image",
+        "value": "img/FRONT_MIXMATCH PROMAG.png",
+        "placeholder": "",
+        "inputClass": "",
+        "target": "front"
+      },
+      {
+        "title": "MixMatch Cow Image",
+        "value": "img/BACK_MIXMATCH COW.png",
+        "placeholder": "",
+        "inputClass": "",
+        "target": "cow"
+      },
+      {
+        "title": "MixMatch Goat Image",
+        "value": "img/BACK_MIXMATCH GOAT.png",
+        "placeholder": "",
+        "inputClass": "",
+        "target": "goat"
+      },
+      {
+        "title": "MixMatch Logo Image",
+        "value": "img/BACK_MIXMATCH PROMAG LOGO.png",
+        "placeholder": "",
+        "inputClass": "",
+        "target": "logo"
+      },
+      {
+        "title": "MixMatch Sheep Image",
+        "value": "img/BACK_MIXMATCH SHEEP.png",
+        "placeholder": "",
+        "inputClass": "",
+        "target": "sheep"
+      },
+      {
+        "title": "Button Submit Image",
+        "value": "img/SUBMIT BTN.png",
+        "placeholder": "",
+        "inputClass": "",
+        "target": "btnSubmitImage"
+      },
+      {
+        "title": "Facebook Image",
+        "value": "img/FB BTN.png",
+        "placeholder": "",
+        "inputClass": "",
+        "target": "fb"
+      },
+      {
+        "title": "Twitter Image",
+        "value": "img/TWITTER BTN.png",
+        "placeholder": "",
+        "inputClass": "",
+        "target": "twit"
+      }
+    ]
+  }, {
+    "name": "Lead Gen",
+    "inputs": [{
+      "title": "Email To",
+      "value": "jeff@mobileads.com",
+      "placeholder": "",
+      "inputClass": "",
+      "target": "emails"
+    }]
   }],
   "property": {
     "bg1": "img/BG1.png",
     "bg2": "img/BG2.png",
-    "bg3": "img/BG3.png"
+    "bg3": "img/BG3.png",
+    "front": "img/FRONT_MIXMATCH PROMAG.png",
+    "cow": "img/BACK_MIXMATCH COW.png",
+    "goat": "img/BACK_MIXMATCH GOAT.png",
+    "logo": "img/BACK_MIXMATCH PROMAG LOGO.png",
+    "sheep": "img/BACK_MIXMATCH SHEEP.png",
+    "btnSubmitImage": "img/SUBMIT BTN.png",
+    "fb": "img/FB BTN.png",
+    "twit": "img/TWITTER BTN.png",
+    "emails": "jeff@mobileads.com"
   },
-  "trackers": []
+  "trackers": ["submit", "facebook", "twitter", "info", "match_cow", "match_goat", "match_logo", "match_sheep", "match_complete"]
 }
