@@ -101,7 +101,7 @@ class AdUnit extends Mads {
       const elements = this.leadData.leadGenEle.elements;
       const trackId = this.data.trackId || this.leadData.leadGenEle.leadGenTrackID;
       const userId = this.userId || 0;
-      const studioId = this.studioId || 0;
+      const studioId = window.data_studiofull.id || this.studioId || 0;
       const referredURL = encodeURIComponent(this.lead_tags || window.location.href);
       let ele = '';
       elements.forEach((element, index) => {
