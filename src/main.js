@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-/* global window */
+/* global window, json_data */
 import Mads, { fadeOutIn } from 'mads-custom';
 import './main.css';
 
@@ -82,6 +82,15 @@ class AdUnit extends Mads {
   }
 
   events() {
+    if (!this.leadData) {
+      if (typeof this.json === 'string' && (this.json.indexOf('./') === 0 || this.json.indexOf('https://') === 0 || this.json.indexOf('http://') === 0)) {
+        this.loadJS(this.json).then(() => {
+          this.leadData = {
+            leadGenEle: json_data.leadGenEle,
+          };
+        });
+      }
+    }
     let submitting = false;
     this.elems.questionaire.addEventListener('submit', (e) => {
       e.stopPropagation();
@@ -90,11 +99,11 @@ class AdUnit extends Mads {
       submitting = true;
       const inputs = [];
       const elements = this.leadData.leadGenEle.elements;
-      let ele = '';
-      const trackId = this.leadData.leadGenEle.leadGenTrackID;
+      const trackId = this.data.trackId || this.leadData.leadGenEle.leadGenTrackID;
       const userId = this.userId || 0;
       const studioId = this.studioId || 0;
       const referredURL = encodeURIComponent(this.lead_tags || window.location.href);
+      let ele = '';
       elements.forEach((element, index) => {
         inputs.push(this.elems[element.ele_id].value);
         ele += `{"fieldname":"${element.ele_name}","value":"${inputs[inputs.length - 1]}"}`;

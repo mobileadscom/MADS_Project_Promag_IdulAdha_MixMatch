@@ -29,6 +29,6 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
-    "mads-custom": "^1.3.2"
+    "mads-custom": "^1.3.3"
   }
 }
