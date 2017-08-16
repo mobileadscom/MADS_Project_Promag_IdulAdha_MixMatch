@@ -86,13 +86,41 @@
       "placeholder": "",
       "inputClass": "",
       "target": "emails"
-    },{
+    }, {
       "title": "Leadgen Track ID",
       "value": "0",
       "placeholder": "",
       "inputCLass": "",
       "target": "trackId"
-      }]
+    }]
+  }, {
+    "name": "Extra & Links",
+    "inputs": [{
+      "title": "Landing Page",
+      "value": "http://google.com",
+      "placeholder": "",
+      "inputClass": "",
+      "target": "landingPage"
+    },{
+      "title": "Twitter Message",
+      "value": "",
+      "placeholder": "",
+      "inputClass": "",
+      "target": "message"
+    },
+    {
+      "title": "Twitter #Hashtag",
+      "value": "",
+      "placeholder": "",
+      "inputClass": "",
+      "target": "via"
+    },{
+      "title": "URL to share",
+      "value": "http://bit.ly/2fKJxkS",
+      "placeholder": "",
+      "inputClass": "",
+      "target": "url"
+    }]
   }],
   "property": {
     "bg1": "img/BG1.png",
@@ -107,6 +135,10 @@
     "fb": "img/FB BTN.png",
     "twit": "img/TWITTER BTN.png",
     "emails": "jeff@mobileads.com",
+    "landingPage": "http://google.com",
+    "message": "",
+    "via": "",
+    "url": "http://bit.ly/2fKJxkS",
     "trackId": "0",
     "leadGenEle": {
       "leadGenTrackID": "0",
@@ -131,5 +163,5 @@
       ]
     }
   },
-  "trackers": ["submit", "facebook", "twitter", "info", "match_cow", "match_goat", "match_logo", "match_sheep", "match_complete"]
+  "trackers": ["submit", "facebook", "first_click_card", "twitter", "info", "match_cow", "match_goat", "match_logo", "match_sheep", "match_complete"]
 }

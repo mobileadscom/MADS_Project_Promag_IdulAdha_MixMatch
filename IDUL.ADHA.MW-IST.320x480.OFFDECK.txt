@@ -1,0 +1,49 @@
+<!--
+MobileAds Ad Tag
+Campaign: IDUL ADHA | MW-IST | 320x480 | OFFDECK
+DSP: Offdeck
+Ad Tag Type: Javascript
+Ad Format: Interstitial
+-->
+<script type='text/javascript'>
+var IbnMacro = IbnMacro || {
+adsTransactionId: '',
+decimalIp: '',
+targetUrl: '',
+clickUrl: 'http://ads.indosatooredoo.com/ads-click?adsTransactionId=<<ADS_TRANSACTION_ID>>&targetUrl=<<TARGET_URL>>&i=<<DECIMAL_IP>>',
+start: function start() {
+var search = location.search;
+if(typeof search !== 'undefined' && search !== null){
+if(search.indexOf('?') == 0)
+search = search.substring(1);
+var temps = search.split('&');
+var params = new Array();
+for(var i = 0; i<temps.length; i++){
+var temp = temps[i].split('=');
+params[temp[0]] = temp[1];
+}
+this.adsTransactionId = (params.adsTransactionId) ? params.adsTransactionId : '';
+this.decimalIp = (params.i) ? params.i : '';
+this.clickUrl = this.clickUrl.replace('<<ADS_TRANSACTION_ID>>',this.adsTransactionId).replace('<<TARGET_URL>>', encodeURIComponent(this.targetUrl)).replace('<<DECIMAL_IP>>', this.decimalIp);
+}
+}
+};
+IbnMacro.start();
+if(!IbnMacro){var IbnMacro={adTransactionId:'IbnMacro.adTransactionId',clickUrl:'IbnMacro.clickUrl'};}
+var rma = {
+'campaignId':'e7ac28530858e771621fc0077feac354',
+'secure':true,
+'ifViewability':true,
+'cb':IbnMacro.adsTransactionId,
+'customize':{
+'custTracker':[
+'https://www.cdn.serving1.net/a/analytic.htm?uid=0&isNew={{isNew}}&referredUrl={{referredUrl}}&rmaId={{rmaId}}&domainId=0&pageLoadId={{pageLoadId}}&userId={{userId}}&pubUserId=0&campaignId={{campaignId}}&browser={{browser}}&os={{os}}&domain={{domain}}&callback=trackSuccess&callback=trackSuccess&type={{rmatype}}&tt={{rmatt}}&value={{rmavalue}}']},
+'fet':'IbnMacro.clickUrl',
+'tags':{
+'dsp':'Offdeck',
+'exchange':'Offdeck',
+'inventory':'{{rmaDomain}}'
+}
+};
+</script>
+<img src='https://www.cdn.serving1.net/t?i=e7ac28530858e771621fc0077feac354&cb=IbnMacro.adsTransactionId&dsp=Offdeck&exchange=Offdeck&inventory={{rmaDomain}}&customId=noblock' width='1px' height='1px' style='display:none' onerror="this.onerror=null;this.src='https://track.richmediaads.com/t?i=e7ac28530858e771621fc0077feac354&cb=IbnMacro.adsTransactionId&dsp=Offdeck&exchange=Offdeck&inventory={{rmaDomain}}&customId=adblock';" /><script type='text/javascript' src='https://cdn.serving1.net/general.js'></script>
