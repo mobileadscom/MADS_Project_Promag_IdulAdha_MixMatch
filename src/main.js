@@ -42,10 +42,10 @@ class AdUnit extends Mads {
 
     return `
       <div class="container" id="ad-container">
-        <div id="page1" class="page">
+        <div id="page1" class="page" style="display: none;">
           <div id="mixMatchContainer"></div>
         </div>
-        <div id="page2" class="page" style="display: none;">
+        <div id="page2" class="page">
           <form id="questionaire" class="form">
             <input type="text" placeholder="Nama *" required id="inputName">
             <input type="email" placeholder="Email *" required id="inputEmail">
@@ -101,7 +101,7 @@ class AdUnit extends Mads {
       const elements = this.leadData.leadGenEle.elements;
       const trackId = this.data.trackId || this.leadData.leadGenEle.leadGenTrackID;
       const userId = this.userId || 0;
-      const studioId = window.data_studiofull.id || this.studioId || 0;
+      const studioId = (window.data_studiofull && window.data_studiofull.id) || this.studioId || 0;
       const referredURL = encodeURIComponent(this.lead_tags || window.location.hostname);
       let ele = '';
       elements.forEach((element, index) => {
